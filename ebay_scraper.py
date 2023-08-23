@@ -6,6 +6,9 @@ import datetime as dt
 from email.message import EmailMessage
 import smtplib
 import ssl
+from dotenv import load_dotenv
+
+load_dotenv(r"C:\Users\T2040\Desktop\All\.env")
 
 url = 'https://www.ebay.co.uk/sch/i.html?_from=R40&_nkw=+&_sacat=33596&_udlo=200&LH_Sold=1&LH_Complete=1&LH_ItemCondition=3000&_ipg=240'
 
@@ -81,7 +84,7 @@ def get_part_numbers(product_list):
 
 def send_email(subject, body):
     email_sender = 'pitono.pastas@gmail.com'
-    email_password = 'goxuvuxyxkgoafaw'
+    email_password = os.getenv('email_password')
     email_receiver = 'ramaskaleksas@gmail.com'
 
     em = EmailMessage()
