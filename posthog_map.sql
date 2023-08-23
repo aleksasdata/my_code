@@ -1,9 +1,5 @@
 with
 
-test_users as (
-  select uuid from users_mapping where is_test_user = true
-),
-
 posthog as (
   select
     uuid as event_id,
@@ -85,7 +81,6 @@ final as (
     array_agg(id) as user_ids
   from event_group_ids  
   group by 1
-  having not any_value(id in (select * from test_users))
 )
 
 select * from final
